@@ -1,6 +1,6 @@
 from turtle import Screen
 from player import Player
-from car_management import Car
+from car_management import Car, Carmanagement
 import time
 
 #Main variables
@@ -16,9 +16,7 @@ screen.listen()
 
 #Create objects
 player = Player()
-lane1_cars=[]
-for i in range(8):
-    lane1_cars.append(Car())
+carmanagement = Car()
 
 
 #Screen controls setup

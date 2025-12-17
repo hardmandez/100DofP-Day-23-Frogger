@@ -3,6 +3,7 @@ from turtle import Turtle
 class Player(Turtle):
     def __init__(self):
         super().__init__()
+        self.lives=3
         self.shape("turtle")
         self.color("green")
         self.penup()
