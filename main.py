@@ -1,7 +1,7 @@
 from turtle import Screen
 from player import Player
 from car_management import CarManagement
-from scoreboard import Scoreboard, PlayerLives, Level
+from scoreboard import Scoreboard
 import time
 
 #Main variables
@@ -22,12 +22,12 @@ player = Player()
 player.draw_lanes()
 carmanagement = CarManagement()
 scoreboard = Scoreboard()
-playerlives = PlayerLives()
-playerlevel = Level()
+# playerlives = PlayerLives()
+# playerlevel = Level()
 
 #Screen controls setup
 screen.onkey(player.move_player, "q")
-screen.onkey(playerlives.reset_lives, "r")
+screen.onkey(scoreboard.reset_lives, "r")
 
 
 while game_on:
@@ -38,26 +38,32 @@ while game_on:
     #Check collision.
     for car in carmanagement.cars:
         if player.ycor() == car.ycor() and (player.xcor() >= car.xcor() and player.xcor() <= car.xcor()+40):
-            playerlives.lives -= 1
+        # if player.distance(car) < 20:
+            scoreboard.lives -= 1
             player.player_reset()
             scoreboard.display_score()
-            playerlives.display_lives()
+            # playerlives.display_lives()
+        print(f"Player X:{player.xcor()}, Y:{player.ycor()}")
 
 
     #Check for completion
-    if player.ycor() > 290:
+    if player.ycor() > 270:
+        player.move_size = 0
+        time.sleep(2)
         scoreboard.score += 10
         scoreboard.display_score()
-        playerlevel.level += 1
-        playerlevel.display_level()
+        scoreboard.level += 1
+        scoreboard.display_score()
         player.player_reset()
         game_speed -= 0.01
         for i in range(0,2):
             carmanagement.create_cars()
+        player.move_size = 20
 
     #Check lives
-    if playerlives.lives <= 0:
+    if scoreboard.lives <= 0:
         carmanagement.car_speed=0
+        scoreboard.game_over()
     else:
         carmanagement.car_speed=20
 

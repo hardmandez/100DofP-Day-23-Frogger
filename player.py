@@ -9,6 +9,7 @@ class Player(Turtle):
         self.shape("turtle")
         self.color("green")
         self.shapesize()
+        self.move_size = 20
         # self.goto(300,300)
         # self.pendown()
         # self.goto(-300,300)
@@ -21,12 +22,11 @@ class Player(Turtle):
         # print(self.shapesize())
 
     def move_player(self):
-        self.forward(20)
-        print(f"Up")
+        self.forward(self.move_size)
+        # print(f"Up")
 
     def player_reset(self):
         self.goto(0, -290)
-
 
     def draw_lanes(self):
         for lane in LANE_POSITIONS:

@@ -1,9 +1,10 @@
+# CAR_SIZE=((1.0,2.0,1.0),(1.0,1.0,1.0))
+CAR_FORWARD=20
 from turtle import Turtle
 import random
 
-LANE_POSITIONS=(270,250,230,210,190,170,150,130,110,90,70,50,30,10,-10,-30,-50,-70,-90,-110,-130,-150,-170,-190,-210,-230,-250,-270)
-# CAR_SIZE=((1.0,2.0,1.0),(1.0,1.0,1.0))
-CAR_FORWARD=20
+LANE_POSITIONS=(250,230,210,190,170,150,130,110,90,70,50,30,10,-10,-30,-50,-70,-90,-110,-130,-150,-170,-190,-210,-230,-250)
+#LANE_POSITIONS=(270,250,230,210,190,170,150,130,110,90,70,50,30,10,-10,-30,-50,-70,-90,-110,-130,-150,-170,-190,-210,-230,-250,-270)
 COLOURS=("RED","GREEN","BLUE","BLACK","WHITE")
 
 class CarManagement():
@@ -20,6 +21,7 @@ class CarManagement():
         new_car = Car()
         new_car_x = random.randint(-280,280)
         new_car_y = random.choice(LANE_POSITIONS)
+
         # new_car.goto(new_car_x, lane)
         new_car.goto(new_car_x, new_car_y)
         self.cars.append(new_car)
@@ -30,7 +32,7 @@ class CarManagement():
                 new_car_x = 280
                 new_car_y = random.choice(LANE_POSITIONS)
                 car.goto(new_car_x, new_car_y)
-            car.forward(self.car_speed)
+            car.backward(self.car_speed)
 
     def reset_car(self):
         if self.xcor() < -310:
@@ -45,5 +47,5 @@ class Car(Turtle):
         self.shape("square")
         self.color("black")
         self.fillcolor(COLOURS[random.randint(0, 4)])
-        self.setheading(180)
+        # self.setheading(180)
         self.shapesize(1,2,1)
