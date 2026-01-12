@@ -6,7 +6,8 @@ class Scoreboard(Turtle):
         self.score=0
         self.lives=3
         self.level=1
-        self.high_score=0
+        with open("data.txt") as data:
+            self.high_score=int(data.read())
         self.color("white")
         self.penup()
         self.hideturtle()
@@ -23,7 +24,11 @@ class Scoreboard(Turtle):
         self.goto(260, 290)
         self.write(f"Level: {self.level}", align="center", font=("Arial", 10, "bold"))
 
-
+    def check_high_score(self):
+        if self.score > self.high_score:
+            self.high_score = self.score
+            with open("data.txt", mode="w") as data:
+                data.write(str(self.high_score))
 
     def game_over(self):
         self.goto(0,0)
@@ -33,8 +38,6 @@ class Scoreboard(Turtle):
 
     def reset_lives(self):
         self.lives=3
-        if self.score > self.high_score:
-            self.high_score = self.score
         self.score=0
         self.level=1
         self.display_score()

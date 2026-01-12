@@ -63,7 +63,9 @@ while game_on:
     #Check lives
     if scoreboard.lives <= 0:
         carmanagement.car_speed=0
+        scoreboard.check_high_score()
         scoreboard.game_over()
+        scoreboard.display_score()
     else:
         carmanagement.car_speed=20
 

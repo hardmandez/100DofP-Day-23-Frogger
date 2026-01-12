@@ -13,8 +13,9 @@ class CarManagement():
         self.no_of_cars=10
         self.car_speed=20
 
-        for i in range(self.no_of_cars):
-            self.create_cars()
+        # for i in range(self.no_of_cars):
+        #     self.create_cars()
+        self.reset_cars()
 
     def create_cars(self):
         # for lane in LANE_POSITIONS:
@@ -39,6 +40,12 @@ class CarManagement():
             new_x = 310
             new_y = self.ycor()
             self.goto(new_x,new_y)
+
+    def reset_cars(self):
+        self.cars.clear()
+
+        for i in range(self.no_of_cars):
+            self.create_cars()
 
 class Car(Turtle):
     def __init__(self):
